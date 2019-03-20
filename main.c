@@ -16,7 +16,7 @@ void setupStringBuff(char* stringBuff, int messageLength){
         perror("Error allocating memory");
         abort();
     }
-    memset(stringBuff, 0, BITLENGTH*messageLength); // Initialise all the data with zeros to prevent erroneous data from lingering
+    memset(stringBuff, 0, BYTELENGTH*messageLength); // Initialise all the data with zeros to prevent erroneous data from lingering
     return;
 }
 // Used to find the length of the string for initiasation of our string buffer
