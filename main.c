@@ -8,16 +8,17 @@ const int BYTELENGTH = BITLENGTH / 8;
 
 
 // ---- FUNCTION DECLARATIONS ----
-void setupStringBuff(char* stringBuff, int messageLength){
-    stringBuff = malloc(BYTELENGTH * messageLength); // Allocate memory for our array of bits (malloc accepts bytes) by taking the number of bits per column and how many columns (width) of text we have
-    printf("Allocated array of size: %d\n", BYTELENGTH * messageLength);
+int setupStringBuff(char* stringBuff, int messageLength){
+    int requiredMemorySize = BYTELENGTH * messageLength;
+    stringBuff = malloc(requiredMemorySize); // Allocate memory for our array of bits (malloc accepts bytes) by taking the number of bits per column and how many columns (width) of text we have
+    printf("Allocated array of size: %d\n", requiredMemorySize);
 
     if (!stringBuff){ // If we could not allocate memory
         perror("Error allocating memory");
         abort();
     }
-    memset(stringBuff, 0, BYTELENGTH*messageLength); // Initialise all the data with zeros to prevent erroneous data from lingering
-    return;
+    memset(stringBuff, 0, requiredMemorySize); // Initialise all the data with zeros to prevent erroneous data from lingering
+    return requiredMemorySize;
 }
 // Used to find the length of the string for initiasation of our string buffer
 int bufLen(char* stringPointer){
@@ -48,7 +49,7 @@ int main(int argc,char* argv[]) {
         return 0;
     }else if(argc>=2){ 
         printf("\nNumber Of Arguments Passed: %d",argc); 
-        printf("\n----Following Are The Command Line Arguments Passed----"); 
+        printf("\n----Following Are The Command Line Arguments Passed----\n"); 
         for(counter=0;counter<argc;counter++) 
             printf("argv[%d]: %s\n",counter,argv[counter]);
         
@@ -60,9 +61,11 @@ int main(int argc,char* argv[]) {
     } 
 
     int messageLength = bufLen(argv[1]);
-    setupStringBuff(stringBuff, messageLength);
+    int allocatedSize = setupStringBuff(stringBuff, messageLength);
 
+    printf("\n");
     printf("Message Length: %d\n", messageLength);
+    printf("Allocated Size in Bytes: %d\n", allocatedSize);
     printf("Colour Mask Value: %d\n", colourMap);
 
     return 0; 
