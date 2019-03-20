@@ -4,11 +4,13 @@
 
 // ---- CONSTANTS ----
 const int BITLENGTH = 32; // 4bits * 8 hex values representing a row each (e.g. one full column)
+const int BYTELENGTH = BITLENGTH / 8;
 
 
 // ---- FUNCTION DECLARATIONS ----
 void setupStringBuff(char* stringBuff, int messageLength){
-    stringBuff = malloc(BITLENGTH * messageLength); // Allocate memory for our array of bits by taking the number of bits per column and how many columns (width) of text we have
+    stringBuff = malloc(BYTELENGTH * messageLength); // Allocate memory for our array of bits (malloc accepts bytes) by taking the number of bits per column and how many columns (width) of text we have
+    printf("Allocated array of size: %d\n", BYTELENGTH * messageLength);
 
     if (!stringBuff){ // If we could not allocate memory
         perror("Error allocating memory");
