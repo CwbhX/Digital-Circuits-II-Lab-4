@@ -38,14 +38,14 @@ int bufLen(char* stringPointer){
 
 // Reverse an array of length 6th for we can get the right order for our output
 unsigned int* reverseArray6(unsigned int array[6]){
-    unsigned int rArray[6];
+    unsigned int* rArray = malloc(sizeof(int)*6); // Initialise array with size of 6 ints, didn't use [6] since complier gave off warnings for the return type
     int counter;
     
     for (counter = 1; counter <= 6; counter++){
         rArray[6-counter] = array[counter-1];
     }
 
-    return &rArray; // Return a pointer to the new reversed array since C doesn't support returning whole arrays
+    return rArray; // Return a pointer to the new reversed array since C doesn't support returning whole arrays
 }
 
 
