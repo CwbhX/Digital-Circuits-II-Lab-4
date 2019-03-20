@@ -53,7 +53,7 @@ int main(int argc,char* argv[]) {
         if (argc == 2){ // If we do not supply a colour mask value, apply all white
             colourMap = 0xFFFFFFFF;
         }else{          // Otherwise apply our specified mask value
-            colourMap = atoi(argv[2]);
+            colourMap = (int) strtol(argv[2], NULL, 16);
         }
     } 
 
