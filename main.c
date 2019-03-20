@@ -36,6 +36,18 @@ int bufLen(char* stringPointer){
     return length; // Return length in width of pixels that our string is
 }
 
+// Reverse an array of length 6th for we can get the right order for our output
+unsigned int* reverseArray6(unsigned int array[6]){
+    unsigned int rArray[6];
+    int counter;
+    
+    for (counter = 1; counter <= 6; counter++){
+        rArray[6-counter] = array[counter-1];
+    }
+
+    return &rArray; // Return a pointer to the new reversed array since C doesn't support returning whole arrays
+}
+
 
 // ---- MAIN -----
 int main(int argc,char* argv[]) {
